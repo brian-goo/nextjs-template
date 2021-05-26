@@ -1,9 +1,9 @@
 import Layout from "../src/layout/Layout"
 
-export default function Index() {
+export default function About() {
   return (
     <Layout>
-      <div>home</div>
+      <div>about</div>
     </Layout>
   )
 }
