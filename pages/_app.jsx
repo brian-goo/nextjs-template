@@ -1,10 +1,24 @@
 import React, { useEffect } from "react"
 import { ThemeProvider } from "@material-ui/core/styles"
 import { CssBaseline } from "@material-ui/core"
-import theme from "../src/theme"
+import { StoreProvider } from "../src/Store"
+import {useStore, useDispatch} from "../src/Store"
+import useTheme from "../src/useTheme"
 import { Title } from "../src/components"
 
-export default function App({ Component, pageProps }) {
+function withContext(Component) {
+  return (props) => (
+    <StoreProvider>
+      <Component {...props} />
+    </StoreProvider>
+  )
+}
+
+function App({ Component, pageProps }) {
+  const theme = useTheme(`light`)
+
+  const {store: {themeColor}} = useStore()
+  
   useEffect(() => {
     const jssStyles = document.querySelector(`#jss-server-side`)
     if (jssStyles) {
@@ -15,10 +29,14 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Title />
+      {/* <StoreProvider> */}
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
+      {/* </StoreProvider> */}
     </>
   )
 }
+
+export default withContext(App)
