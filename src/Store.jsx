@@ -28,8 +28,10 @@ export const StoreProvider = ({children}) => {
   return useMemo(() => {
     return (
       <StoreContext.Provider value={{store}}>
-        <DispatchContext.Provider value={{dispatch}}>{children}</DispatchContext.Provider>
+        <DispatchContext.Provider value={{dispatch}}>
+          {children}
+        </DispatchContext.Provider>
       </StoreContext.Provider>
     )
-  }, [store])
+  })
 }

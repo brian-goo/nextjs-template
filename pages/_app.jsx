@@ -14,10 +14,9 @@ function withContext(Component) {
   )
 }
 
-function App({ Component, pageProps }) {
-  const theme = useTheme(`light`)
-
+function Application({ Component, pageProps }) {
   const {store: {themeColor}} = useStore()
+  const theme = useTheme(themeColor)
   
   useEffect(() => {
     const jssStyles = document.querySelector(`#jss-server-side`)
@@ -39,4 +38,5 @@ function App({ Component, pageProps }) {
   )
 }
 
-export default withContext(App)
+export default withContext(Application)
+// export default Application

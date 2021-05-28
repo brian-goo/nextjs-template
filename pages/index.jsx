@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 export default function Index() {
   const classes = useStyles()
 
-  const {store: {themeColor}} = useStore()
+  // const {store: {themeColor}} = useStore()
   
   return (
     <Layout>
